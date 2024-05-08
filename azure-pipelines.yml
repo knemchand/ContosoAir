@@ -16,9 +16,11 @@ steps:
     verbose: false
     customCommand: 'install --production'
 - task: ArchiveFiles@2
-  displayName: 'Archive $(Build.SourceDirectory)'
   inputs:
-    rootFolderOrFile: '$(Build.SourceDirectory)'
-    includeRootFolder: false
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Arttifacts: drop'
